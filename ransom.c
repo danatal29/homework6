@@ -48,7 +48,7 @@ void checkMagazine(int magazine_count, char** magazine, int note_count,
         char *temp_word= (char*) malloc(temp_size*sizeof(char)+1);
         if ((temp_word!=NULL)){
             strcpy(temp_word,*(note+i));
-        }else {
+        } else {
             exit (1);
         }
 
