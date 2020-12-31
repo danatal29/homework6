@@ -77,7 +77,7 @@ void checkMagazine(int magazine_count, char** magazine, int note_count,
                 return;
             }
 
-        } // should not get here!
+        } 
         
     }
     printf("No");
