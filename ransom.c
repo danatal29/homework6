@@ -15,9 +15,11 @@ char** split_string(char*);
 // Complete the checkMagazine function below.
 void checkMagazine(int magazine_count, char** magazine, int note_count,
                     char** note) {
-    
-    int max_words=30000;
 
+    int max_words=30000;
+    short int max_size=5;
+    short int min_size=1;
+    /* verifing input */
     if ((magazine_count>max_words)||(magazine_count<0)){
         exit (1);
     }
@@ -26,18 +28,17 @@ void checkMagazine(int magazine_count, char** magazine, int note_count,
         exit (1);
     }
 
-    /* verifing pointers legality */
+    /* verifing pointers */
     if ((*magazine == NULL)||(*note==NULL)){
             exit (1);
-        }
+    }
 
-    short int max_size=5;
-    short int min_size=1;
 
+    /*looping over words in note*/
     for (int i=0 ; i< note_count ; i++){
 
         
-        /* verifing word legality */
+        /* verifing word */
         if ( *(note + i) == NULL){
             exit(1);
         }
@@ -45,33 +46,32 @@ void checkMagazine(int magazine_count, char** magazine, int note_count,
         if ((temp_size > max_size)||(temp_size < min_size)){
             exit(1);
         }
+        /*cloning string*/
         char *temp_word= (char*) malloc(temp_size*sizeof(char)+1);
         if ((temp_word!=NULL)){
             strcpy(temp_word,*(note+i));
         } else {
             exit (1);
         }
-
-        
-        
-
+        /*looping over words in magazine to find match*/
         for (int j=0; j<magazine_count ; j++){
             
+            /*verifying pointers*/
             if ( *(magazine + j) == NULL){
             continue;
             }
-
+            /* comparing strings */
             if (!(strcmp(temp_word,*(magazine+j)))) {
                 *(magazine+j)=NULL;     
                 free (temp_word);
+                /* last string needed */
                 if(i==note_count-1){
                 printf("Yes");
                 return;  
                 }
                 break;
-            }
-            /*reached end of dictionary*/
-            else if (j==magazine_count-1){
+               /* reached end of dictionary with no match */
+             } else if (j==magazine_count-1){
                 printf("No");
                 free (temp_word);
                 return;
@@ -80,6 +80,7 @@ void checkMagazine(int magazine_count, char** magazine, int note_count,
         } 
         
     }
+    /* if output is "Yes" - returning from within loops */
     printf("No");
     return;
 }
