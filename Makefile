@@ -5,7 +5,7 @@ CFLAGS=-g -Wall -std=c99
 CCLINK=gcc
 OBJS=ransom.o
 RM=rm -f
-TARGET =ransom
+TARGET =prog.exe
 
 $(TARGET): $(OBJS)
 	  $(CCLINK) -o $(TARGET) $(OBJS) 
